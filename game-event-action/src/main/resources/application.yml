@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  #Application
+  application:
+    name: game-action
+
+
+game-events:
+  entryPointTopic: gameEventTopic
+  bootstrapServers: localhost:9092
