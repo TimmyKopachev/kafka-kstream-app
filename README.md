@@ -50,6 +50,10 @@ cd kafka_{version}
 
 ```
 
+
+##_Use following endpoint to trigger_ [the application](http://localhost:8082/publish ):
+___ 
+
  Where to find help
 ---
 
