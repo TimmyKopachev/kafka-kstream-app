@@ -18,8 +18,9 @@ public class GameEventRestController {
     private final GameEventKafkaSender gameEventKafkaSender;
 
     @RequestMapping("/publish")
-    public void sendPlayer() {
+    public String sendPlayer() {
         gameEventKafkaSender.sendEvent(createMockRequest());
+        return "mock request has been sent to kafka topic!";
     }
 
     QuestEventPlayerGroupRequest createMockRequest() {

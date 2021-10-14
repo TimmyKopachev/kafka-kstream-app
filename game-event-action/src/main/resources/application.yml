@@ -8,5 +8,5 @@ spring:
 
 
 game-events:
-  entryPointTopic: gameEventTopic
+  entryPointTopic: game-event-topic
   bootstrapServers: localhost:9092

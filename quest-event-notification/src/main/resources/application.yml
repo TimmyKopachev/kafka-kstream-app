@@ -10,7 +10,8 @@ quest-notification:
   kafka:
     consumer:
       applicationId: questEventPlayer
-      topic: gameEventTopic
+      internalTopic: game-event-topic
+      externalTopic: external-output-notificaiton
       group-id: group-game-event-consumer
       bootstrap-servers: localhost:9092
       auto-offset-reset: earliest

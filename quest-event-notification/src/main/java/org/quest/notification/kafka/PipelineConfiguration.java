@@ -21,8 +21,10 @@ public class PipelineConfiguration {
 
     private final Environment environment;
 
-    @Value("${quest-notification.kafka.consumer.topic}")
-    private String dataReceiverPipelineTopic;
+    @Value("${quest-notification.kafka.consumer.internalTopic}")
+    private String dataReceiverPipelineInternalTopic;
+    @Value("${quest-notification.kafka.consumer.externalTopic}")
+    private String dataReceiverPipelineExternalTopic;
 
     @Bean
     KafkaStreamsOrchestrator kafkaStreamsOrchestrator(Pipeline questEventPlayerPipeline) {
@@ -40,7 +42,8 @@ public class PipelineConfiguration {
 
     @Bean
     Pipeline dataReceiverPipeline() {
-        return new QuestEventPlayerPipeline(dataReceiverPipelineTopic);
+        return new QuestEventPlayerPipeline(
+                dataReceiverPipelineInternalTopic, dataReceiverPipelineExternalTopic);
     }
 
 }

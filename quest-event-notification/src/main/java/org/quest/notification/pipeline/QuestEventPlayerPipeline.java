@@ -6,6 +6,7 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
+import org.apache.kafka.streams.kstream.Produced;
 import org.common.model.QuestEventPlayerGroupRequest;
 import org.common.serialization.CommonStreamConfig;
 
@@ -13,15 +14,19 @@ import org.common.serialization.CommonStreamConfig;
 @RequiredArgsConstructor
 public class QuestEventPlayerPipeline implements Pipeline {
 
-    private final String topic;
+    private final String internalTopic;
+    private final String externalTopic;
 
     @Override
     public Topology topology() {
         StreamsBuilder streamsBuilder = new StreamsBuilder();
 
-        streamsBuilder.stream(topic,
-                Consumed.with(Serdes.String(), CommonStreamConfig.getSerde(QuestEventPlayerGroupRequest.class)))
-                .peek(this::output);
+        streamsBuilder
+                .stream(internalTopic,
+                        Consumed.with(Serdes.String(), CommonStreamConfig.getSerde(QuestEventPlayerGroupRequest.class)))
+                .peek(this::output)
+                .to(externalTopic,
+                        Produced.with(Serdes.String(), CommonStreamConfig.getSerde(QuestEventPlayerGroupRequest.class)));
 
         return streamsBuilder.build();
     }

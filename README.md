@@ -32,7 +32,9 @@ ls
 
 cd kafka_{version}
 
-./bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic gameEventTopic
+./bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic game-event-topic
+
+./bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic external-output-notificaiton
 
 ```
 
@@ -46,7 +48,7 @@ cd kafka_{version}
 ##### _check output of kafka topic already created_
 
 ```
-./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic gameEventTopic --from-beginning
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic external-output-notificaiton --from-beginning
 
 ```
 
