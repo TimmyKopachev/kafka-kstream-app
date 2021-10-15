@@ -7,6 +7,7 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.quest.notification.pipeline.KafkaStreamsOrchestrator;
 import org.quest.notification.pipeline.Pipeline;
 import org.quest.notification.pipeline.QuestEventPlayerPipeline;
+import org.quest.notification.pipeline.QuestPlayerEventMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,9 +42,9 @@ public class PipelineConfiguration {
     }
 
     @Bean
-    Pipeline dataReceiverPipeline() {
-        return new QuestEventPlayerPipeline(
-                dataReceiverPipelineInternalTopic, dataReceiverPipelineExternalTopic);
+    Pipeline dataReceiverPipeline(QuestPlayerEventMapper questPlayerEventMapper) {
+        return new QuestEventPlayerPipeline(dataReceiverPipelineInternalTopic,
+                dataReceiverPipelineExternalTopic, questPlayerEventMapper);
     }
 
 }
