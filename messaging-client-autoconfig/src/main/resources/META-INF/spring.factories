@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    org.game.rpg.shooter.messaging.autoconfig.MessagingAutoConfiguration,\
+    org.game.rpg.shooter.messaging.autoconfig.LocalEmbeddedKafkaConfiguration

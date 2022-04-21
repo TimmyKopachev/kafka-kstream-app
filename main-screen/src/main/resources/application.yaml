@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: main-screen-menu
+
+messaging:
+  config:
+    enabled: true
+
+kafka:
+  bootstrap:
+    server: localhost:9092

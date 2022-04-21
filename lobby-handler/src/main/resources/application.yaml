@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: lobby-handler
+
+
+messaging:
+  config:
+    enabled: true
+
+kafka:
+  bootstrap:
+    server: localhost:9092
+
+pipeline:
+  matchmaking:
+    basic:
+      applicationId: basicMatchmakingLobby
+      inputTopic: BASIC-MATCHMAKING-LOBBY-EVENT_TOPIC
+      outputTopic: APPROVE-MATCHMAKING-FOUND_TOPIC
+      bootstrapServer: localhost:9092
+    ranked:
+      applicationId: rankedMatchmakingLobby
+      inputTopic: RANKED-MATCHMAKING-LOBBY-EVENT_TOPIC
+      outputTopic: APPROVE-MATCHMAKING-FOUND_TOPIC
+      bootstrapServer: localhost:9092
